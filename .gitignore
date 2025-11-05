@@ -1,0 +1,9 @@
+# Local configuration
+local_config.h
+
+# Build files
+config.h
+drw.o
+dwm
+dwm.o
+util.o
