@@ -461,6 +461,7 @@ buttonpress(XEvent *e)
 	}
 	if (ev->window == selmon->barwin) {
 		i = x = 0;
+		x += TEXTW("󰣇");
 		do
 			x += TEXTW(tags[i]);
 		while (ev->x >= x && ++i < LENGTH(tags));
