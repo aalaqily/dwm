@@ -748,6 +748,8 @@ drawbar(Monitor *m)
 			urg |= c->tags;
 	}
 	x = 0;
+	drw_setscheme(drw, scheme[SchemeNorm]);
+	x = drw_text(drw, x, 0, TEXTW("󰣇"), bh, lrpad / 2, "󰣇", 0);
 	for (i = 0; i < LENGTH(tags); i++) {
 		w = TEXTW(tags[i]);
 		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);
