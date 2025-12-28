@@ -1,14 +1,15 @@
 /* See LICENSE file for copyright and license details. */
 
 #include <X11/XF86keysym.h>
+#include <X11/Xutil.h>
 
 #include "local_config.h"
 
 /* startup commands */
 static const char *const autostart[] = {
+	"setxkbmap", "-layout", "us,ara,de", "-option", "grp:alt_caps_toggle", NULL,
         "konsole", NULL,
 	"feh", "--bg-scale", DWM_WALLPAPER, NULL,
-	//"sh", "-c", "while true; do xsetroot -name \"$(date +'%a %F %r')\"; sleep 1; done", NULL,
         NULL
 };
 
@@ -80,13 +81,15 @@ static const char *downvol[]    = { "/usr/bin/pactl",   "set-sink-volume", "@DEF
 static const char *mutevol[]    = { "/usr/bin/pactl",   "set-sink-mute",   "@DEFAULT_SINK@",      "toggle",   NULL };
 static const char *light_up[]   = { "/usr/bin/light",   "-A", "5", NULL };
 static const char *light_down[] = { "/usr/bin/light",   "-U", "5", NULL };
+static const char *scrot_full[] = {"scrot", SCREENSHOTS_DIR "/%Y-%m-%d-%H%M%S_$wx$h_scrot.png", NULL};
+static const char *scrot[] = {"scrot", "--select", SCREENSHOTS_DIR "/%Y-%m-%d-%H%M%S_$wx$h_scrot.png", NULL};
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
-        { MODKEY|ShiftMask,             XK_b,      spawn,          {.v = browsercmd } },
+    { MODKEY|ShiftMask,             XK_b,      spawn,          {.v = browsercmd } },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
@@ -117,11 +120,13 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-        { 0,                       XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
-	{ 0,                       XF86XK_AudioMute, spawn, {.v = mutevol } },
-	{ 0,                       XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
-        { 0,				XF86XK_MonBrightnessUp,		spawn,	{.v = light_up} },
+    { 0,                XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
+	{ 0,                XF86XK_AudioMute, spawn, {.v = mutevol } },
+	{ 0,                XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
+    { 0,				XF86XK_MonBrightnessUp,		spawn,	{.v = light_up} },
 	{ 0,				XF86XK_MonBrightnessDown,	spawn,	{.v = light_down} },
+	{MODKEY,                        XK_a,      spawn,           {.v = scrot_full}},
+	{MODKEY,	 					XK_s,      spawn,           {.v = scrot}}
 };
 
 /* button definitions */
