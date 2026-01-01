@@ -41,7 +41,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = {"1", "2", "3", "4", "5"};
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -68,6 +68,7 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
+#define 
 #define MODKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
@@ -96,7 +97,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
-    { MODKEY|ShiftMask,             XK_b,      spawn,          {.v = browsercmd } },
+        { MODKEY|ShiftMask,             XK_b,      spawn,          {.v = browsercmd } },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
@@ -130,10 +131,10 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-    { 0,                XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
+        { 0,                XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
 	{ 0,                XF86XK_AudioMute, spawn, {.v = mutevol } },
 	{ 0,                XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
-    { 0,				XF86XK_MonBrightnessUp,		spawn,	{.v = light_up} },
+        { 0,				XF86XK_MonBrightnessUp,		spawn,	{.v = light_up} },
 	{ 0,				XF86XK_MonBrightnessDown,	spawn,	{.v = light_down} },
 	{MODKEY,                        XK_a,      spawn,           {.v = scrot_full}},
 	{MODKEY,	 					XK_s,      spawn,           {.v = scrot}}
