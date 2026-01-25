@@ -94,7 +94,7 @@ static const char *scrot[] = {"scrot", "--select", SCREENSHOTS_DIR "/%Y-%m-%d-%H
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ SUPERKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ SUPERKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ SUPERKEY,             XK_Return, spawn,          {.v = termcmd } },
 	{ SUPERKEY,                       XK_b,      togglebar,      {0} },
         { SUPERKEY|ShiftMask,             XK_b,      spawn,          {.v = browsercmd } },
 	{ SUPERKEY,                       XK_j,      focusstack,     {.i = +1 } },
